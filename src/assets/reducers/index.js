@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import main from './main/main';
+import apod from './apod';
 
 const rootReducer = combineReducers({
-  main: main,
+  apod,
 });
 
 export default rootReducer;

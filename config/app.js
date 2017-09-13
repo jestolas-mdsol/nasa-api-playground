@@ -19,15 +19,17 @@ import webpackConfig from '../webpack/dev-commons';
 import routes from '../src/routes';
 
 const ENV_PATH = '.env';
+dotenv.load({ path: ENV_PATH });
+
 const INDEX_HTML_PATH = '../build/index.html';
 const DEV_STATIC_PATH = '../../build/';
 const WATCHER_DIR = './';
 const MONGO_URL = 'mongodb://localhost:27017/foo_bar_db';
 const DB_NAME = 'foo_bar_db';
+const ENV = process.env.NODE_ENV || 'development';
+const PORT = process.env.PORT || 1337;
 const compiler = webpack(webpackConfig);
 const app = Express();
-
-dotenv.load({ path: ENV_PATH });
 
 // #here
 // if development...
@@ -38,7 +40,8 @@ app.use(cookieParser());
 app.use(helmet());
 app.use(cors());
 
-if (process.env.NODE_ENV === 'development') {
+if (ENV === 'development') {
+  console.log('~ we be developin\' ~');
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: webpackConfig.output.publicPath,
@@ -48,7 +51,7 @@ if (process.env.NODE_ENV === 'development') {
 
 mongoose.connect(`${MONGO_URL}/${DB_NAME}`, (err, db) => {
   if (err) {
-    console.error(err);
+    console.error('Could not connect to mongodb. Please make sure you have it installed if needed.');
   } else {
     console.log(`connected to ${DB_NAME}`);
     console.log('db: ', db);
@@ -89,7 +92,7 @@ compiler.plugin('done', () => {
   });
 });
 
-app.listen(process.env.PORT, (err) => {
+app.listen(PORT, (err) => {
   if (err) console.log(err);
-  console.log(`\nListening to ${process.env.NODE_ENV} server on port ${process.env.PORT}`);
+  console.log(`\nListening to ${ENV} server on port ${PORT}`);
 });
