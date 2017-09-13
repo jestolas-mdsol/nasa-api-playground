@@ -3,6 +3,7 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ProgressBarPlugin = require('progress-bar-webpack-plugin');
+var Dotenv = require('dotenv-webpack');
 // var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var path = require('path');
 var qs = require('qs');
@@ -10,7 +11,7 @@ var qs = require('qs');
 var TEMPLATE = './src/index.html';
 var INDEX = 'index.html';
 var ENTRY_PATH = './src/assets/index.jsx';
-var OUTPUT_PATH = '../build'
+var OUTPUT_PATH = '../build';
 
 module.exports = {
   name: 'frontend-client',
@@ -90,6 +91,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: INDEX,
       template: TEMPLATE,
+    }),
+    new Dotenv({
+      path: './.env',
     }),
   ]
 }
