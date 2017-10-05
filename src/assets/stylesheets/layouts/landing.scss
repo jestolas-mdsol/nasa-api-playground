@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  color: white;
+  color: #fff;
 
   .heading__wrapper {
     width: 100%;
@@ -18,11 +18,13 @@
   .apod__wrapper {
     width: 60rem;
     height: 40rem;
+    margin-bottom: 5rem;
   }
 
   .apod__card {
     background-color: #000;
   }
+
 
   .iframe {
     margin: '0 auto',
