@@ -1,8 +1,7 @@
-// not really true async...
 import { UPDATE_APOD } from '../constants';
 // REMINDER: use datefns insead of moment
 
-const updateAPODAsync = (data) => {
+export const updateAPODAsync = (data) => {
   return (dispatch) => {
     const payload = {
       type: UPDATE_APOD,
@@ -21,6 +20,6 @@ const updateAPODAsync = (data) => {
   };
 };
 
-export {
+export default {
   updateAPODAsync,
 };
