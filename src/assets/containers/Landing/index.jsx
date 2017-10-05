@@ -1,22 +1,12 @@
 import React, { Component, PropTypes } from 'react';
-import { Row, Col } from 'react-flexbox-grid/lib/index';
+import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import Iframe from 'react-iframe';
 import { Card, CardMedia, CardTitle, CardText } from 'material-ui/Card';
+import Iframe from 'react-iframe';
 import { connect } from 'react-redux';
 
 import { getAPOD } from '../../apis/apod';
 import { updateAPODAsync } from '../../actions/apod/async';
-import styles from '../../stylesheets/landing.css';
-
-const inline = {
-  iframe: {
-    margin: '0 auto',
-  },
-  apodCard: {
-    backgroundColor: '#000000',
-  }
-}
 
 class Landing extends Component {
   constructor(props) {
@@ -33,53 +23,42 @@ class Landing extends Component {
 
   render() {
     return (
-      <div className={styles.landingDefault}>
-        <Row style={{ padding: '0px' }}>
-          <Col xs={12}>
-            <h1 className={styles.headerCenter}>JV&apos;s NASA Api Playground</h1>
-            <h4 className={styles.subheaderCenter}>A precedent for another project...</h4>
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12}>
-            {
-              !this.props.astronomyPictureOfTheDay ? null :
-                <Card style={inline.apodCard}>
-                  <CardMedia
-                    overlay={<CardTitle title={this.props.apodTitle} />}
-                  >
-                    {
-                      this.props.astronomyPictureOfTheDay.includes('.youtube') ?
-                        <Iframe
-                          url={this.props.astronomyPictureOfTheDay}
-                          position="relative"
-                          width="560px"
-                          height="315px"
-                          styles={inline.iframe}
-                        /> :
-                        <img src={this.props.astronomyPictureOfTheDay} alt="Astronomy" />
-                    }
-                  </CardMedia>
-                  <CardText>{this.props.apodDescription}</CardText>
-                </Card>
-            }
-          </Col>
-        </Row>
-        <Row>
-          <Col xs={12} className={styles.textCentered}>
-            Click the button to get NASA&apos;s Astronomy Picture Of The Day!
-          </Col>
-        </Row>
-        <Row className={styles.rowPadded}>
-          <Col xsOffset={5} xs={2}>
-            <RaisedButton
-              label="Get APOD!"
-              primary
-              fullWidth
-              onTouchTap={this.getAstronomyPicOfTheDay}
-            />
-          </Col>
-        </Row>
+      <div className="landing__container">
+        <div className="heading__wrapper">
+          <h1>JV&apos;s NASA API Playground</h1>
+          <h2>A test environment for another project...</h2>
+        </div>
+        <div className="apod__wrapper">
+          {
+            !this.props.astronomyPictureOfTheDay ?
+              null :
+              <Card className="apod__card">
+                <CardMedia
+                  overlay={<CardTitle title={this.props.apodTitle} />}
+                >
+                  {
+                    this.props.astronomyPictureOfTheDay.includes('.youtube') ?
+                      <Iframe
+                        className="iframe"
+                        url={this.props.astronomyPictureOfTheDay}
+                        position="relative"
+                        width="560px"
+                        height="315px"
+                      /> :
+                      <img src={this.props.astronomyPictureOfTheDay} alt="Astronomy" />
+                  }
+                </CardMedia>
+                <CardText>{this.props.apodDescription}</CardText>
+              </Card>
+          }
+        </div>
+        <h2>Click the button to get NASA&apos;s Astronomy Picture Of The Day!</h2>
+        <RaisedButton
+          className="submit--button"
+          label="Get APOD!"
+          primary
+          onTouchTap={this.getAstronomyPicOfTheDay}
+        />
       </div>
     );
   }

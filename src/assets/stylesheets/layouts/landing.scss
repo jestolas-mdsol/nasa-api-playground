@@ -1,0 +1,41 @@
+.landing__container {
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  color: #fff;
+
+  .heading__wrapper {
+    width: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+    text-align: center;
+  }
+
+  .apod__wrapper {
+    width: 60rem;
+    height: 40rem;
+    margin-bottom: 5rem;
+  }
+
+  .apod__card {
+    background-color: #000;
+  }
+
+
+  .iframe {
+    margin: '0 auto',
+  }
+
+  .form__input {
+    margin-bottom: 0.5rem;
+  }
+
+  .submit--button {
+    width: 8rem;
+    margin-bottom: 1rem;
+  }
+}
