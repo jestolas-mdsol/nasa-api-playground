@@ -42,8 +42,6 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        // IMPORTANT:
-        // only use ExtractTextPlugin in prod - it doesn't support hot-reloading
         test: /\.scss$/,
         use: [
           { loader: 'style-loader' },
