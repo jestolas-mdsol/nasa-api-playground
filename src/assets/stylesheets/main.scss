@@ -1,4 +1,9 @@
 @import
+  './components/buttons',
+  './components/navbar',
+  './components/uploader';
+
+@import
   './layouts/footer',
   './layouts/landing',
   './layouts/app';

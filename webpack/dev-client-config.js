@@ -42,24 +42,39 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        // IMPORTANT:
-        // only use ExtractTextPlugin in prod - it doesn't support hot-reloading
         test: /\.scss$/,
-        use: [
-          { loader: 'style-loader' },
-          { loader: 'css-loader' },
-          { loader: 'sass-loader' },
-        ],
+        use: ['style-loader', 'css-loader', 'resolve-url-loader', 'sass-loader?sourceMap'],
       },
       {
         test: /\.(jpg|png|svg)$/,
         use: {
           loader: 'url-loader',
           options: {
-            limit: 25000,
+            limit: 200000,
             name: 'images/[name].[ext]',
+            fallback: {
+              use: 'file-loader',
+            },
           },
         },
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000,
+              mimetype: 'application/font-woff',
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: [
+          { loader: 'file-loader' },
+        ],
       },
     ],
   },

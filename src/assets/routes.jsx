@@ -1,9 +1,7 @@
 import { Route, IndexRoute, browserHistory} from 'react-router';
-// containers
-import App from './containers/App/';
-import Landing from './containers/Landing/';
 
-// components
+import App from './components/App/';
+import Landing from './components/Landing/';
 
 export default (
   <Route path="/" component={ App }>
