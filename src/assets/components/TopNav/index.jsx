@@ -14,23 +14,12 @@ const enhance = compose(
     updateClick: ({ triggerClick }) => () => triggerClick(bool => !bool),
     reset: ({ triggerClick }) => () => triggerClick(bool => false),
   }),
-  lifecycle({
-    componentWillMount() {
-      console.log('recompose topnav - willmount - this is a test');
-      console.log('props: ', this.props);
-    },
-    componentDidMount() {
-      console.log('didmount - topnav index');
-    }
-  }),
-)
+);
 
-const TopNav = (props) => {
-  return (
-    <div>
-      <NavBar />
-    </div>
-  )
-}
+const TopNav = () => (
+  <div>
+    <NavBar />
+  </div>
+);
 
 export default enhance(TopNav);

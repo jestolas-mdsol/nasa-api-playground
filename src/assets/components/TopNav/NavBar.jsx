@@ -14,11 +14,6 @@ const enhance = compose(
       alert('work in progress');
     },
   }),
-  lifecycle({
-    componentWillMount() {
-      console.log('leftnav -- willmount!');
-    },
-  }),
 );
 
 const LeftNav = (props) => (

@@ -63,7 +63,7 @@ const states = state => ({
 });
 
 const dispatches = dispatch => ({
-  updateAPODAsync: (data) => { dispatch(updateAPODAsync(data)); },
+  updateAPODAsync: data => (dispatch(updateAPODAsync(data))),
 });
 
 export default connect(states, dispatches)(APODContainer);

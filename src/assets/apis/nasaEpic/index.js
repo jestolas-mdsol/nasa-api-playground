@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 import { formatDate } from '../../helpers';
-import { UPDATE_UPLOADER } from '../../actions/uploader/constants';
 
 // const API_KEY = process.env.API_KEY;
 

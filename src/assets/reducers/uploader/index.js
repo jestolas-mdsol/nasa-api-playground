@@ -1,12 +1,13 @@
 import typeToReducer from 'type-to-reducer';
-import { UPDATE_UPLOADER } from '../../actions/uploader/constants';
+import { UPDATE_IMAGE_URLS } from '../../actions/uploader/constants';
 
 const uploaderState = {
-  foo: 'foo bar baz',
+  foo: 'bar baz',
+  imageUrls: [],
 };
 
 export default typeToReducer({
-  [UPDATE_UPLOADER]: {
+  [UPDATE_IMAGE_URLS]: {
     PENDING: () => {
       return {
         ...uploaderState,
@@ -22,7 +23,7 @@ export default typeToReducer({
     FULFILLED: (state, action) => {
       return {
         ...uploaderState,
-        ...action.payload,
+        imageUrls: action.payload,
       };
     },
   },

@@ -8,7 +8,6 @@ export const formatDate = (date, formatString) => {
 
 export const extractImageNames = (data) => {
   // guard, data must be an array (of )
-  console.log('data received: ', data);
   return data.reduce((acc, current) => {
     acc.push(current.image);
     return acc;

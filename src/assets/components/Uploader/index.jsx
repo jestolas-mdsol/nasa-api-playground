@@ -3,31 +3,37 @@ import { connect } from 'react-redux';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 
-import { updateUploader, fetchEpicImages } from '../../actions/uploader/async';
+import { fetchEpicImageUrls, updateImageUrls } from '../../actions/uploader/async';
+
+import ImagePreviews from './imagePreviews';
 
 class Uploader extends Component {
   constructor(props) {
     super(props);
 
     this.handleCreateGifClick = this.handleCreateGifClick.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
+  }
+
+  handleDateChange(nullEvent, date) {
+    console.log('date changed to: ', date);
   }
 
   handleCreateGifClick() {
-    console.log('clickity clack... ');
-    fetchEpicImages('10/09/2017');
+    fetchEpicImageUrls('10/09/2017').then((data) => {
+      this.props.updateImageUrls(data);
+    });
   }
 
   render() {
     return (
       <div className="uploader__containe">
-        <h1>Test: {this.props.foo}</h1>
-        <h2>Pick a start and end date</h2>
+        <h1>Foo: {this.props.foo}</h1>
+        <h2>Pick a date</h2>
         <DatePicker
-          hintText="Start date"
-          openToYearSelection
-        />
-        <DatePicker
-          hintText="End date"
+          hintText="Click To Select Date"
+          style={{ color: 'green' }}
+          onChange={this.handleDateChange}
           openToYearSelection
         />
         <RaisedButton
@@ -35,6 +41,7 @@ class Uploader extends Component {
           label="Create Gif"
           onClick={this.handleCreateGifClick}
         />
+        <ImagePreviews />
       </div>
     );
   }
@@ -42,14 +49,17 @@ class Uploader extends Component {
 
 Uploader.propTypes = {
   foo: PropTypes.string.isRequired,
+  updateImageUrls: PropTypes.func.isRequired,
+  imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 const states = state => ({
   foo: state.uploader.foo,
+  imageUrls: state.uploader.imageUrls,
 });
 
 const dispatches = dispatch => ({
-  // actions
+  updateImageUrls: data => (dispatch(updateImageUrls(data))),
 });
 
-export default connect(states)(Uploader);
+export default connect(states, dispatches)(Uploader);
