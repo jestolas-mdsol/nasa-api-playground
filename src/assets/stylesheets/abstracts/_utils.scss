@@ -1,3 +1,27 @@
 .whiteText {
-  color: white;
+  color: white !important;
+}
+
+.greenText {
+  color: green !important;
+}
+
+// move to abstracts/_mui-overrides.scss
+.date-picker__container {
+
+  input {
+    border-radius: 10px !important;
+    text-align: center !important;
+    background-color: blue !important;
+    color: red !important;
+
+    &:hover, &__hover {
+      cursor: hand !important;
+      cursor: pointer !important;
+    }
+  }
+
+  hr {
+    border: none !important;
+  }
 }

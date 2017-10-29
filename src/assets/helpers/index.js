@@ -14,11 +14,20 @@ export const extractImageNames = (data) => {
   }, []);
 };
 
-// export const formatEPICRequestObject = (imageNames, date) => {
-//
-// }
+export const setDate = (type) => {
+  const date = new Date();
+
+  if (type === 'min') {
+    date.setFullYear('2015', '09', '01');
+  } else {
+    date.setDate(date.getDate() - 2);
+  }
+
+  return date;
+};
 
 export default {
   formatDate,
   extractImageNames,
+  setDate,
 };

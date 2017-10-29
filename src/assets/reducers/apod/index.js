@@ -4,6 +4,8 @@ import { UPDATE_APOD } from '../../actions/apod/constants';
 const initialAPODState = {
   appBackground: 'http://imageshack.com/a/img923/4467/GEWqeQ.jpg',
   image: '',
+  title: '',
+  description: '',
 };
 
 export default typeToReducer({
