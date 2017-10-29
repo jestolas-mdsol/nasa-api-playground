@@ -1,6 +1,5 @@
-import { UPDATE_IMAGE_URLS } from '../constants';
+import { UPDATE_IMAGE_URLS, UPDATE_REQUEST_DATE } from '../constants';
 import { getEPICData } from '../../../apis/nasaEpic';
-import { extractImageNames, formatDate } from '../../../helpers';
 
 export const updateUploader = (data) => {
   return (dispatch) => {
@@ -28,29 +27,24 @@ export const updateImageUrls = imageUrls => (
       type: UPDATE_IMAGE_URLS,
       payload: new Promise(resolve => (resolve(imageUrls))),
     };
+
     dispatch(payload);
   }
 );
 
-// #trigger , may need to move this
-export const fetchEpicImageUrls = (date) => {
-  // need spiner while data is fetched
-  return getEPICData(date).then((data) => {
-    // guard, data must be an array
-    const fileNames = extractImageNames(data);
-    const formattedDate = formatDate(date, 'YYYY/MM/DD');
-    return fileNames.map(fileName => (`https://epic.gsfc.nasa.gov/archive/enhanced/${formattedDate}/png/${fileName}.png`));
+export const updateRequestDate = date => (
+  (dispatch) => {
+    const payload = {
+      type: UPDATE_REQUEST_DATE,
+      payload: new Promise(resolve => (resolve(date))),
+    };
 
-  }).catch((err) => {
-    console.log('an error occured with NASA\'s EPIC API: ', err);
-    // note: make a visual hint in case of erroor
-    return err;
-  });
-};
+    dispatch(payload);
+  }
+);
 
 export default {
   updateUploader,
   enableLoadingAnimation,
   updateImageUrls,
-  fetchEpicImageUrls,
 };

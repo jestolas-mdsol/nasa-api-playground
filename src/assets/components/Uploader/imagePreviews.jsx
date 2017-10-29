@@ -1,7 +1,18 @@
-import React, { Component, PropTypes } from 'react';
+import React, { PropTypes } from 'react';
 
-const ImagePreview = (props) => (
-  <div className="whiteText">hello world</div>
+import ImagePreview from './imagePreview';
+
+const ImagePreviews = ({ imageUrls }) => (
+  <div className="whiteText">
+    <h4>These are the image urls:</h4>
+    <ul>
+      {imageUrls.map(imageUrl => (<ImagePreview key={imageUrl} imageUrl={imageUrl} />))}
+    </ul>
+  </div>
 );
 
-export default ImagePreview;
+ImagePreviews.propTypes = {
+  imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
+};
+
+export default ImagePreviews;
