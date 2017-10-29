@@ -7,19 +7,19 @@ import promiseMiddleware from 'redux-promise-middleware';
 import createLogger from 'redux-logger';
 import ReduxThunk from 'redux-thunk';
 
-import Routes from './routes.jsx';
+import Routes from './routes';
 import rootReducer from './reducers';
 
-let logger = createLogger();
+const logger = createLogger();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-let storeWithMiddleware = createStore(rootReducer, {/* optional preloaded state */}, composeEnhancers(
-  applyMiddleware(promiseMiddleware(), logger, ReduxThunk)
+const storeWithMiddleware = createStore(rootReducer, composeEnhancers(
+  applyMiddleware(promiseMiddleware(), logger, ReduxThunk),
 ));
 
 window.store = storeWithMiddleware;
 
-render (
+render(
   <Provider store={storeWithMiddleware}>
     <Router history={browserHistory}>{Routes}</Router>
-  </Provider>, document.getElementById('app')
+  </Provider>, document.getElementById('app'),
 );

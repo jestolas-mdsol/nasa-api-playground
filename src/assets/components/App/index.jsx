@@ -1,11 +1,11 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Children, Component, PropTypes } from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Helmet } from 'react-helmet';
 import { connect } from 'react-redux';
 
 import TopNav from '../TopNav';
-import Footer from '../../components/Footer';
+import Footer from '../Footer';
 
 const faviconPath = require('../../images/favicon-32x32.png');
 
@@ -31,7 +31,7 @@ export default class App extends Component {
             <link rel="icon" href={faviconPath} type="image/x-icon" />
           </Helmet>
           <TopNav />
-          { React.Children.map(this.props.children, child => React.cloneElement(child)) }
+          { Children.map(this.props.children, child => React.cloneElement(child)) }
           <Footer />
         </div>
       </MuiThemeProvider>
