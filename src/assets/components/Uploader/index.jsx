@@ -32,8 +32,7 @@ class Uploader extends Component {
   render() {
     return (
       <div className="uploader__containe">
-        <h1>Foo: {this.props.foo}</h1>
-        <h2>Pick a date</h2>
+        <h3>Pick a date</h3>
         <DatePicker
           className="date-picker__container"
           hintText="Click To Select Date"
@@ -43,7 +42,7 @@ class Uploader extends Component {
         />
         <RaisedButton
           className="submit-button--default"
-          label="Create Gif"
+          label="Get Snapshots"
           onClick={this.handleCreateGifClick}
         />
         <ImagePreviews
@@ -55,7 +54,6 @@ class Uploader extends Component {
 }
 
 Uploader.propTypes = {
-  foo: PropTypes.string.isRequired,
   updateImageUrls: PropTypes.func.isRequired,
   imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
   apiRequestDate: PropTypes.string.isRequired,
@@ -65,7 +63,6 @@ Uploader.propTypes = {
 };
 
 const states = state => ({
-  foo: state.uploader.foo,
   imageUrls: state.uploader.imageUrls,
   apiRequestDate: state.uploader.apiRequestDate,
   datePickerMinDate: state.uploader.datePickerMinDate,
